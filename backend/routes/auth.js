@@ -4,11 +4,12 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = "JayisagoodB$oy"
 
 
-// create a user using :POST "/api/auth/createuser" log in not ruquired
+//rout:1 -  create a user using :POST "/api/auth/createuser" log in not ruquired
 
 router.post('/createuser' ,[
     body('name','Enter a valid name').isLength({ min: 3 }),
@@ -53,7 +54,7 @@ router.post('/createuser' ,[
     
 })
 
-// create a user using :POST "/api/auth/login" no log in required
+//rout:2 - create a user using :POST "/api/auth/login" no log in required
 
 router.post('/login' ,[
   body('email','Enter valid Email').isEmail(),
@@ -86,6 +87,21 @@ router.post('/login' ,[
 
     res.json({authToken})
   } catch(error){
+    console.error(error.message)
+    res.status(500).send("Internal SERVER ERROR ")
+  }
+})
+
+
+// route:3- GET loggedin use detail using :POST "/api/auth/getuser"  log in required
+
+router.post('/getuser',fetchuser, async (req,res)=>{
+
+  try {
+    userId=req.user.id;
+    const user = await User.findById(userId).select('-password')
+    res.send(user)
+  } catch (error) {
     console.error(error.message)
     res.status(500).send("Internal SERVER ERROR ")
   }
