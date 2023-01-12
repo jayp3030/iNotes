@@ -37,7 +37,7 @@ router.post(
         title,
         description,
         tag,
-        user: req.user.id,
+        user  : req.user.id,
       });
       const savedNote = await note.save();
       res.json(savedNote);
@@ -48,7 +48,7 @@ router.post(
   }
 );
 
-//rout:3 -  UPDATE notes :POST "/api/notes/updatenote" log ruquired
+//rout:3 -  UPDATE notes :PUT "/api/notes/updatenote" log ruquired
 
 router.put("/updatenote/:id", fetchuser, async (req, res) => {
   const { title, description, tag } = req.body;
@@ -83,5 +83,32 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+//rout:4 -  DELETE notes :POST "/api/notes/deletenote" log ruquired
+
+router.delete("/deletenote/:id", fetchuser, async (req, res) => {
+  const { title, description, tag } = req.body;
+
+  try {
+    
+    // find a note to be deleted and delete it
+    let note = await Note.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send("NOT FOUND");
+    }
+    if (note.user.toString() !== req.user.id) {
+      return res.status(401).send("Not Allowed");
+    }
+    note = await Note.findByIdAndDelete(
+      req.params.id,
+    );
+    res.json({ 'Success' : 'Note has been Deleted'});
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 
 module.exports = router;
