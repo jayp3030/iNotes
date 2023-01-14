@@ -1,0 +1,25 @@
+.navbar-brand {
+    font-family: 'Noto Serif', serif;
+    color: rgb(109, 106, 106);
+    font-size: 1.5rem;
+}
+.navbar-brand span{
+    color: rgb(180, 4, 180);
+}
+.navbar-brand:hover{
+    animation: jerk .1s linear;
+}
+@keyframes jerk{
+    0%{
+        transform: rotate(0deg);
+    }
+    33%{
+        transform: rotate(3deg);
+    }
+    66%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-3deg);
+    }
+}
