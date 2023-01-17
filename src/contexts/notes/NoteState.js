@@ -4,7 +4,7 @@ import NoteContext from "./noteContext";
 const NoteState =(props)=>{
     const notesInitial = [
         {
-          "_id": "63bfd928aee4a000ad9c7fdb",
+          "_id": "63bfd928aee4a000ad9c7fdb1",
           "user": "63b8162ba7d9f77120487878",
           "title": "omm2",
           "description": "hi how are you",
@@ -13,7 +13,7 @@ const NoteState =(props)=>{
           "__v": 0
         },
         {
-          "_id": "63bfd939aee4a000ad9c7fdf",
+          "_id": "63bfd939aee4a000ad9c7fdf2",
           "user": "63b8162ba7d9f77120487878",
           "title": "jaydip",
           "description": "hi how are you",
@@ -22,7 +22,7 @@ const NoteState =(props)=>{
           "__v": 0
         },
         {
-          "_id": "63bfd939aee4a000ad9c7fdf",
+          "_id": "63bfd939aee4a000ad9c7fdf3",
           "user": "63b8162ba7d9f77120487878",
           "title": "jaydip",
           "description": "hi how are you",
@@ -31,7 +31,7 @@ const NoteState =(props)=>{
           "__v": 0
         },
         {
-          "_id": "63bfd939aee4a000ad9c7fdf",
+          "_id": "63bfd939aee4a000ad9c7fdf4",
           "user": "63b8162ba7d9f77120487878",
           "title": "jaydip",
           "description": "hi how are you",
@@ -42,9 +42,32 @@ const NoteState =(props)=>{
       ]
       const [notes , setNotes] = useState(notesInitial)
 
+      // add note 
+      const addNote =(title,description,tag)=>{
+          const note={
+            "_id": "63bfd939aee4a000ad9c7fdf45",
+            "user": "63b8162ba7d9f77120487878",
+            "title": title,
+            "description": description,
+            "tag": "demo",
+            "date": "2023-01-12T09:56:09.097Z",
+            "__v": 0
+          };
+          setNotes(notes.concat(note))
+      }
+      // delete note 
+      const deleteNote =(id)=>{
+        const newNotes = notes.filter((note)=>{return note._id !== id});
+        setNotes(newNotes);
+      }
+      // update note 
+      const editNote =(id , title ,description ,tag)=>{
+        
+      }
+
 
     return (
-        <NoteContext.Provider value={{notes,setNotes}}>
+        <NoteContext.Provider value={{notes,addNote,deleteNote,editNote}}>
             {props.children}
         </NoteContext.Provider>
     )

@@ -23,3 +23,18 @@
         transform: rotate(-4deg);
     }
 }
+
+
+.btn-hero{
+    color:  rgb(43, 129, 124);
+    background-color: white;
+    border: 1.5px solid rgb(43, 129, 124);
+    padding: .3rem .8rem;
+    
+}
+
+.btn-hero:hover{
+    color: black;
+    background-color: rgb(144, 183, 180);
+    transition:.4s ease-in-out;
+}
