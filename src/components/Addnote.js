@@ -8,7 +8,7 @@ function Addnote() {
     const context = useContext(noteContext);
     const {addNote} = context;
 
-    const [note,setNote] = useState({title:'' , description:'',tag:'default'})
+    const [note,setNote] = useState({title:'' , description:'',tag:''})
     
     const handleClick =(e)=>{
         e.preventDefault();
@@ -30,6 +30,10 @@ function Addnote() {
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
             <textarea className="form-control" id="description" name='description' rows="6" onChange={onChange}></textarea>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">tag</label>
+            <textarea className="form-control" id="tag" name='tag' rows="1" onChange={onChange}></textarea>
           </div>
           <div className="mb-3">
             <button type="button" className="btn-hero" onClick={handleClick}>Add Note</button>
