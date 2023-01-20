@@ -21,8 +21,8 @@ function Navbar() {
                     </li>
                 </ul>
                 <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn-hero" type="submit">Search</button>
+                    <Link className="btn-hero mx-1" to="/login" role="button">Log In</Link>
+                    <Link className="btn mx-1" to="/signup" role="button">Sign Up</Link>
                 </form>
                 </div>
             </div>

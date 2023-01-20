@@ -70,13 +70,13 @@ router.post('/login' ,[
     let user = await User.findOne({email});
 
     if (!user) {
+      succes = false;
       return res.status(400).json({error:'pleas enter valid credential'})
-      
     }
 
     const comparePass = await bcrypt.compare(password,user.password)
     if (!comparePass) {
-      return res.status(400).json({error:'pleas enter valid credential'})
+      return res.status(400).json({succes , error:'pleas enter valid credential'})
     }
     const data = {
       user:{
@@ -84,8 +84,8 @@ router.post('/login' ,[
       }
     }
     const authToken = jwt.sign(data , JWT_SECRET)
-
-    res.json({authToken})
+    succes = true;
+    res.json({ succes , authToken})
   } catch(error){
     console.error(error.message)
     res.status(500).send("Internal SERVER ERROR ")
