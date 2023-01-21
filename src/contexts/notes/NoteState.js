@@ -30,9 +30,9 @@ const NoteState =(props)=>{
             'Content-Type':'application/json',
             'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNiODE2MmJhN2Q5Zjc3MTIwNDg3ODc4In0sImlhdCI6MTY3MzEwNjQ1NX0.yuPRNMzwJ2hqJpO7fyBkMJj_VP-jjdfNWihf9jU9QhE'
           },
-          body:JSON.stringify({title,description,tag})
+          body:JSON.stringify({title,description,tag})  
         });
-        const note = response.json();
+        const note = await response.json();
         setNotes(notes.concat(note))
       }
       // delete note 
@@ -59,9 +59,9 @@ const NoteState =(props)=>{
               'Content-Type':'application/json',
               'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNiODE2MmJhN2Q5Zjc3MTIwNDg3ODc4In0sImlhdCI6MTY3MzEwNjQ1NX0.yuPRNMzwJ2hqJpO7fyBkMJj_VP-jjdfNWihf9jU9QhE'
             },
-            body:JSON.stringify()
+            body:JSON.stringify({title, description, tag})
           });
-          const json = await response.json({title,description,tag});
+          const json = await response.json();
         
 
         // logic to edit notes 

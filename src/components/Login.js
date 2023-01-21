@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-// import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
 
     const [credentials , setCredentials] = useState({email:"" , password:""});
-    // let history = useHistory();
+    let navigate = useNavigate();
     
 
     const handleSubmit = async (e)=>{
@@ -18,12 +18,15 @@ function Login() {
             body:JSON.stringify({email:credentials.email ,password : credentials.password})
           });
             const json = await response.json();
-            console.log(json);
+        
+
+           
 
             if (json.succes) {
                 //save the auth-token and  redirect
                 
-                localStorage.setItem('token' , json.authtoken)
+                localStorage.setItem('token' , json.authtoken);
+                navigate("/");
             }
             else{
                 alert("Enter valid credentials")

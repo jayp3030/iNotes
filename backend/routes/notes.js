@@ -54,7 +54,11 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
   const { title, description, tag } = req.body;
 
   try {
-    const newNote = {};
+    const newNote = {
+      title : "",
+      description : "",
+      tag:"",
+    };
     if (title) {
       newNote.title = title;
     }
@@ -72,6 +76,7 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
     if (note.user.toString() !== req.user.id) {
       return res.status(401).send("Not Allowed");
     }
+    console.log(newNote)
     note = await Note.findByIdAndUpdate(
       req.params.id,
       { $set: newNote },
