@@ -1,7 +1,7 @@
 import React ,{useState}from "react";
 import { useNavigate } from "react-router-dom";
 
-function Signup() {
+function Signup(props) {
   const [credentials , setCredentials] = useState({name:"", email:"" , password:"" ,cpassword:""});
   let navigate = useNavigate();
 
@@ -25,9 +25,10 @@ function Signup() {
    if (json.succes) {
     localStorage.setItem('token',json.authtoken);
     navigate("/login");
+    props.showAlert('Account created succesfully ' , 'success')
    }
    else{
-      alert('User already Exist')
+      props.showAlert('Invalid credentials' , 'danger')
    }
 
   };
@@ -87,7 +88,7 @@ function Signup() {
             Confirm Password
           </label>
           <input
-            type="cpassword"
+            type="password"
             className="form-control"
             id="cpassword"
             onChange={onChange}
