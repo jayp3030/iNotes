@@ -9,6 +9,7 @@ function NoteItem(props) {
 
     const dltNote=()=>{
       deleteNote(notes._id)
+      props.showAlert('Deleted successfully' , 'success')
     }
   return (
     <div className='col-md-4'>
@@ -19,7 +20,7 @@ function NoteItem(props) {
             <p className="card-text fw-semibold">#{notes.tag}</p>
 
             <i className="fa fa-pen-to-square mx-2 fs-5" onClick={()=>{updateNote(notes)}} ></i>
-            <i className='far fa-trash-alt mx-2 fs-5' onClick={dltNote}></i>
+            <i className='far fa-trash-alt mx-2 fs-5' onClick={dltNote} ></i>
         </div>
       </div>
     </div>

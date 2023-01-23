@@ -22,7 +22,7 @@ function Signup(props) {
     const json = await response.json();
   
 
-   if (json.succes) {
+   if (json.success) {
     localStorage.setItem('token',json.authtoken);
     navigate("/login");
     props.showAlert('Account created succesfully ' , 'success')

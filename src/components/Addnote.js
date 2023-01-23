@@ -3,7 +3,7 @@ import noteContext from '../contexts/notes/noteContext';
 import '../styles/extra.css'
 
 
-function Addnote() {
+function Addnote(props) {
 
     const context = useContext(noteContext);
     const {addNote} = context;
@@ -14,6 +14,7 @@ function Addnote() {
         e.preventDefault();
         addNote(note.title , note.description, note.tag );
         setNote({title:'' , description:'',tag:''});
+        props.showAlert('Added successfully' , 'success')
     }
 
     const onChange =(e)=>{
